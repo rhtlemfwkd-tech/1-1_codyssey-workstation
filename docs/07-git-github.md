@@ -283,6 +283,7 @@ branch 'main' set up to track 'origin/main'.
 **배운 내용:**
 - `git remote add origin`: 현재 로컬 저장소에 origin이라는 이름으로 원격 저장소 주소를 등록합니다.
 - `git push -u origin main`: 로컬 main 브랜치를 원격 저장소에 Push하고, 이후 Push·Pull에 사용할 추적 브랜치를 설정합니다.
+- **Git과 GitHub의 차이:** Git은 내 컴퓨터에서 변경 이력을 관리하고, GitHub는 그 이력을 원격에 올려 다른 사람과 공유하는 곳입니다.
 
 **④ 공개 전환**
 
@@ -354,7 +355,7 @@ main — Document Git rebase conflict resolution
 - [Source Control의 main 브랜치와 커밋 그래프](evidence/07-vscode-source-control.png)
 - [Accounts 메뉴의 rhtlemfwkd-tech GitHub 로그인](evidence/07-vscode-github-account.png)
 
-**⑤ Windows Git Push 및 403 오류 해결
+**⑤ Windows Git Push 및 403 오류 해결**
 
 VS Code 연동 화면을 캡처한 후, 이미지 3장을 GitHub 원격 저장소에 올리기 위해 Push를 시도했습니다.
 
