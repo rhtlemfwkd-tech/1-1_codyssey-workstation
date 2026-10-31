@@ -20,7 +20,9 @@ Server=29.9.0 Driver=overlayfs Running=11
 
 서버 버전 `29.9.0`, 드라이버 `overlayfs`, `Running=11`은 **조회 시점 제 시스템 전체** 컨테이너 수였습니다.
 
-이번 PC에는 Docker가 **이미 설치**되어 있었습니다. 미설치 Ubuntu의 참고 설치 절차는 아래와 같으며 **실제로 실행한 로그가 아닙니다**.
+실습 PC에는 Docker가 **이미 설치**되어 있었습니다.
+
+미설치 Ubuntu의 참고 설치 절차는 아래와 같으니 참고하시면 되겠습니다.
 
 ```bash
 curl -fsSL https://get.docker.com -o get-docker.sh
