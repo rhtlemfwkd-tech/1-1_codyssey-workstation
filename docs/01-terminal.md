@@ -107,20 +107,20 @@ Nested archive memo
 **디렉터리 이동과 `pwd` 출력**
 
 ```bash
-$ cd ~/projects/codyssey/1-1_codyssey-workstation-tech
+$ cd ~/projects/codyssey/1-1_codyssey-workstation
 $ cd practice/01-terminal
 $ pwd
-/home/사용자명/projects/codyssey/1-1_codyssey-workstation-tech/practice/01-terminal
+/home/사용자명/projects/codyssey/1-1_codyssey-workstation/practice/01-terminal
 
 $ cd memo/drafts/archive
 $ pwd
-/home/사용자명/projects/codyssey/1-1_codyssey-workstation-tech/practice/01-terminal/memo/drafts/archive
+/home/사용자명/projects/codyssey/1-1_codyssey-workstation/practice/01-terminal/memo/drafts/archive
 $ cat history.txt
 Nested archive memo
 
 $ cd ../../..
 $ pwd
-/home/사용자명/projects/codyssey/1-1_codyssey-workstation-tech/practice/01-terminal
+/home/사용자명/projects/codyssey/1-1_codyssey-workstation/practice/01-terminal
 ```
 
 **배운 내용:**
