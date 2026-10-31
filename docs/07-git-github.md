@@ -388,4 +388,9 @@ GitHub 증거 이미지 3장도 원격 저장소에 올라간 것을 확인했�
 - `git config --local credential.https://github.com.username`: 현재 저장소에서 GitHub HTTPS 인증에 사용할 사용자 이름을 지정합니다.
 - `Git Credential Manager`: Git의 인증 정보를 관리하고 브라우저 인증을 지원합니다.
 
-원인 및 해결 과정 전체는 [트러블슈팅 4 — Windows Git Credential Manager 403](reference/07-windows-git-auth-403.md)에 정리했습니다.
+**트러블슈팅 요약 (실제 기록):**
+- **가설:** VS Code 로그인은 맞지만 Git Push에는 이전 계정의 인증이 사용됐을 수 있습니다.
+- **확인:** `git remote -v`의 주소는 정상인데, `git push`에서 이전 계정으로 `403`이 발생했습니다.
+- **조치 및 결과:** 저장소별 인증 사용자 설정 후 브라우저에서 올바른 계정으로 인증하자 Push가 성공했습니다.
+
+명령어와 실제 출력은 [트러블슈팅 4 — Windows Git Credential Manager 403](reference/07-windows-git-auth-403.md)에 정리했습니다.
