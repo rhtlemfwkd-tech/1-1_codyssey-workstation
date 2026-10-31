@@ -101,25 +101,19 @@ Accept-Ranges: bytes
 **검증 결과:** 호스트의 `127.0.0.1:18080`에 연결하여 NGINX의 HTML을 받았습니다.
 이로써 **포트 매핑과 HTTP 접속 증거 확보 완료**입니다.
 
-**② 포트 사용 상태 추가 확인 (2026-10-31)**
+**② 포트 사용 상태 확인**
 
 ```bash
-$ date '+%Y-%m-%d %H:%M:%S %Z'
-2026-10-31 17:04:35 KST
 $ ss -ltn '( sport = :18080 )'
-State Recv-Q Send-Q Local Address:Port Peer Address:Port
-
-$ sudo ss -ltnp '( sport = :18080 )'
-[sudo: authenticate] 비밀번호:
-State            Recv-Q            Send-Q                       Local Address:Port                       Peer Address:Port           Process
+State    Recv-Q   Send-Q     Local Address:Port       Peer Address:Port
+LISTEN   0        4096           127.0.0.1:18080           0.0.0.0:*
 ```
 
 **배운 내용:**
 
 - `ss -ltn`: 현재 TCP 포트의 수신 대기(`LISTEN`) 상태를 확인합니다.
-- `-p`: 포트를 사용하는 프로세스 정보도 함께 조회합니다. `sudo`로 권한을 확보해 확인했습니다.
 - `( sport = :18080 )`: 호스트의 18080번 포트만 조회합니다.
-- **결과:** 추가 확인 시점에는 18080번 포트의 수신 대기 소켓과 점유 프로세스가 조회되지 않았습니다. 충돌이나 프로세스 종료는 발생하지 않았으며, 위의 HTTP 200 기록과는 다른 시점의 조회 결과입니다.
+- **결과:** 기존에 생성했던 도커외의 18080번 포트의 다른 수신 대기 소켓과 점유 프로세스가 조회되지 않았습니다.
 
 ## 5-3. 실습 컨테이너 정리 (선택)
 
