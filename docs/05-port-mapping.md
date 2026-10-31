@@ -40,7 +40,8 @@ CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 **배운 내용:**
 
 - `docker images`: 4번 실습에서 만든 이미지 확인
-- `docker ps -a`: 동일한 이름의 컨테이너가 있는지 확인
+- `docker ps -a`: 종료된 컨테이너까지 포함해 확인
+- `--filter name=...`: 원하는 이름의 컨테이너만 목록에서 골라 확인
 
 **② 호스트 18080번 포트와 컨테이너 80번 포트 연결**
 

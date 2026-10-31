@@ -27,6 +27,7 @@ DRIVER    VOLUME NAME
 
 - `cd`, `pwd`: 디렉터리 이동과 현재 위치 확인
 - `docker ps -a`: 동일한 이름의 실습 컨테이너가 없는지 확인
+- `--filter name=...`: 지정한 이름에 맞는 컨테이너나 볼륨만 확인
 - `docker volume ls`: 동일한 이름의 볼륨이 없는지 확인
 
 ## 6-1. 바인드 마운트 — 호스트 파일 수정 반영
@@ -101,6 +102,8 @@ Hello Docker Volume
 **배운 내용:**
 
 - `-v codyssey-6-data:/data`: 볼륨을 컨테이너에 연결
+- `sh -c`: 셸에 전달한 문자열을 명령으로 실행
+- `&&`: 앞 명령이 성공한 경우에만 다음 명령 실행
 - `echo`, `cat`: 파일에 데이터 저장하고 내용 확인
 
 **③ 첫 번째 컨테이너 삭제**
@@ -124,6 +127,7 @@ Hello Docker Volume
 
 **배운 내용:**
 
+- `--entrypoint cat`: 기본 웹 서버 실행 명령 대신 `cat`으로 `/data/note.txt` 내용을 출력하고 종료합니다.
 - `docker rm`: 컨테이너 삭제
 
 ## 6-3. 실습 후 리소스 정리

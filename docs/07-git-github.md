@@ -222,8 +222,8 @@ bbc3e10 (HEAD -> main) Initial Codyssey workstation project
 
 **배운 내용:**
 - `git add`: 수정한 파일을 스테이징합니다.
-- `git commit`: 스테이징한 해당 상태를 이력으로 남깁니다.
-- `git log`: 커밋 내역을 확인합니다.
+- `git commit -m`: 스테이징한 변경사항을 지정한 메시지와 함께 기록합니다.
+- `git log -1 --oneline`: 가장 최근 커밋 1개를 짧게 한 줄로 표시합니다.
 
 ## 7-5. GitHub 저장소 연결 및 최초 Push — 실제 기록
 
@@ -246,7 +246,7 @@ $ git status -sb
 - `--public`: 공개 저장소로 생성합니다.
 - `--source=. --remote=origin --push`: 현재 폴더를 원본으로 원격 저장소를 등록하고 Push까지 시도합니다.
 - `git remote -v`: 등록된 원격 저장소 주소를 확인합니다.
-- `git status -sb`: 현재 브랜치와 파일 변경 상태를 간략하게 확인합니다.
+- `git status -sb`: `-s`는 변경사항을 짧게, `-b`는 브랜치 정보까지 표시합니다.
 
 **② 기존 이름의 저장소가 비어 있는지 확인**
 

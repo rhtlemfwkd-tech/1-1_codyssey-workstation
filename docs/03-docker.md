@@ -86,6 +86,7 @@ This message shows that your installation appears to be working correctly.
 **배운 내용:**
 - `docker run`: 컨테이너 실행
 - `docker ps -a`: 종료된 컨테이너까지 확인
+- `--filter name=...`: 목록에서 지정한 이름과 일치하는 컨테이너만 확인
 - `docker logs`: 컨테이너 로그 확인
 
 
@@ -114,6 +115,9 @@ codyssey-ops
 **배운 내용:**
 - `-d`: 백그라운드 실행
 - `docker stats`: 리소스 사용량 확인
+- `--no-stream`: CPU·메모리 사용량을 계속 갱신하지 않고 한 번만 출력
+- `sh -c`: 셸에 명령 문자열을 전달해 실행
+- `sleep 3600`: 3600초 동안 기다리며 컨테이너가 바로 종료되지 않도록 유지
 - `docker stop`·`start`: 중지·재시작
 
 **Ubuntu 컨테이너 내부 진입**
