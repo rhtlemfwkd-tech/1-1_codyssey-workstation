@@ -1,0 +1,3 @@
+# Recreate each exercise under practice/ locally; do not commit generated files.
+# The submission tracks source examples separately under app/.
+/practice/

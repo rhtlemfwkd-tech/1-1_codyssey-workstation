@@ -1,0 +1,150 @@
+# 6. 바인드 마운트 및 Docker 볼륨 영속성
+
+## 실습 시작
+
+4번에서 만든 `codyssey-web:v3` 이미지를 재사용합니다.
+프로젝트 루트에서 터미널을 열어 시작합니다.
+
+**① 실습 위치와 기존 리소스 확인**
+
+```bash
+$ mkdir -p practice/06-volumes
+$ cd practice/06-volumes
+$ pwd
+/home/사용자명/projects/codyssey/1-1_codyssey-workstation/practice/06-volumes
+$ sudo docker ps -a --filter name=codyssey-bind --filter name=codyssey-vol
+[sudo: authenticate] 비밀번호:
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+$ sudo docker volume ls --filter name=codyssey-6-data
+DRIVER    VOLUME NAME
+```
+
+**배운 내용:**
+
+- `cd`, `pwd`: 디렉터리 이동과 현재 위치 확인
+- `docker ps -a`: 동일한 이름의 실습 컨테이너가 없는지 확인
+- `docker volume ls`: 동일한 이름의 볼륨이 없는지 확인
+
+## 6-1. 바인드 마운트 — 호스트 파일 수정 반영
+
+**① 호스트 파일을 만들고 컨테이너에 연결**
+
+```bash
+$ mkdir -p bind
+$ echo "Before bind mount" > bind/note.txt
+$ sudo docker run -d \
+  --name codyssey-bind \
+  -v "$PWD/bind:/data:ro" \
+  --entrypoint sh \
+  codyssey-web:v3 -c 'sleep 3600'
+a69d28ef27d39608eca97a53328b657c0f3222138fb48ac9426e6ff24265fd48
+```
+
+**배운 내용:**
+
+- `mkdir -p`: 호스트에 폴더 생성
+- `-v "$PWD/bind:/data:ro"`: 호스트의 `bind` 폴더를 컨테이너의 `/data`에 **읽기 전용** 연결
+- `--entrypoint sh`: 웹 서버 대신 파일 확인을 위한 셸 실행
+
+**② 컨테이너에서 최초 파일 확인**
+
+```bash
+$ sudo docker exec codyssey-bind cat /data/note.txt
+Before bind mount
+```
+
+**③ 호스트 파일을 바꾸고 변경 반영 확인**
+
+```bash
+$ echo "After bind mount" > bind/note.txt
+$ sudo docker exec codyssey-bind cat /data/note.txt
+After bind mount
+```
+
+**배운 내용:**
+
+- `docker exec`: 실행 중인 컨테이너에서 명령 실행
+- **결과:** 호스트 파일 수정 내용이 컨테이너 내부에 바로 반영됨
+
+## 6-2. Docker 볼륨 — 컨테이너 삭제 후 데이터 유지
+
+**① 볼륨 생성**
+
+```bash
+$ sudo docker volume create codyssey-6-data
+codyssey-6-data
+```
+
+**배운 내용:**
+
+- `docker volume create`: Docker가 관리하는 볼륨 생성
+
+**② 첫 번째 컨테이너에서 파일 저장**
+
+```bash
+$ sudo docker run \
+  --name codyssey-vol1 \
+  -v codyssey-6-data:/data \
+  --entrypoint sh \
+  codyssey-web:v3 \
+  -c 'echo "Hello Docker Volume" > /data/note.txt && cat /data/note.txt'
+Hello Docker Volume
+```
+
+**배운 내용:**
+
+- `-v codyssey-6-data:/data`: 볼륨을 컨테이너에 연결
+- `echo`, `cat`: 파일에 데이터 저장하고 내용 확인
+
+**③ 첫 번째 컨테이너 삭제**
+
+```bash
+$ sudo docker rm codyssey-vol1
+codyssey-vol1
+```
+
+**④ 두 번째 컨테이너에서 같은 데이터 읽기**
+
+```bash
+$ sudo docker run \
+  --name codyssey-vol2 \
+  -v codyssey-6-data:/data \
+  --entrypoint cat \
+  codyssey-web:v3 /data/note.txt
+Hello Docker Volume
+```
+새로운 컨테이너도 같은 볼륨에서 `Hello Docker Volume`을 읽습니다. 컨테이너를 삭제해도 이름 있는 Docker 볼륨의 데이터는 유지됩니다.
+
+**배운 내용:**
+
+- `docker rm`: 컨테이너 삭제
+
+## 6-3. 실습 후 리소스 정리
+
+**① 컨테이너 중지 및 삭제 (실제 로그)**
+
+```bash
+$ sudo docker stop codyssey-bind
+codyssey-bind
+$ sudo docker rm codyssey-bind codyssey-vol2
+codyssey-bind
+codyssey-vol2
+```
+
+**배운 내용:**
+
+- `docker stop`: 실행 중인 컨테이너 중지
+- `docker rm`: 실습용 컨테이너 삭제
+
+**② 볼륨 삭제**
+
+```bash
+$ sudo docker volume rm codyssey-6-data
+codyssey-6-data
+```
+바인드 마운트 변경 반영과 볼륨 영속성 검증에 성공했고, 실습용 컨테이너·볼륨 정리도 완료했습니다.
+
+**배운 내용:**
+
+- `docker volume rm`: 필요 없는 Docker 볼륨 삭제
+
