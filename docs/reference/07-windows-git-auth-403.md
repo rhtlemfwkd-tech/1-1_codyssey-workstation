@@ -10,9 +10,11 @@ You don't have permissions to push to "rhtlemfwkd-tech/1-1_codyssey-workstation"
 Would you like to create a fork and push to it instead?
 ```
 
-GitHub의 `rhtlemfwkd-tech` 계정과 VS Code Accounts 메뉴의 로그인 상태는 일치했으므로, 실제 Git Push에 사용하는 **별도 인증 주체**를 확인했습니다.
+## 원인 가설
 
-## 확인 과정과 원인
+VS Code에 로그인한 계정과 실제 Git Push에 사용되는 인증 계정이 서로 달라서 발생한 문제로 의심했습니다.
+
+## 확인
 
 ### 1. Windows Git CLI 인식 실패
 
@@ -59,7 +61,7 @@ fatal: unable to access 'https://github.com/rhtlemfwkd-tech/1-1_codyssey-worksta
 **확인된 원인:** VS Code 자체 로그인은 `rhtlemfwkd-tech`였지만, Windows Git이 HTTPS Push할 때는 **이전 계정 `****1749`의 인증을 사용**하고 있었습니다.
 따라서 해당 계정으로는 새 저장소에 쓰기 권한이 없었고 HTTP 403이 발생했습니다.
 
-## 해결 — 저장소별 GitHub 인증 사용자 지정
+## 해결/대안
 
 이 로컬 Git 저장소에서 사용할 GitHub 인증 사용자 이름을 명시했습니다.
 

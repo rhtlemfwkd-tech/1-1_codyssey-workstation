@@ -20,9 +20,11 @@ hint: Updates were rejected because the remote contains work that you do not
 hint: have locally.
 ```
 
-## 원인 가설과 확인
+## 원인 가설
 
-로컬 커밋 `072eb75`를 만들기 전에 GitHub 웹에서 직접 수정한 파일들이 원격에 반영되었지만, 로컬은 그 커밋들을 가져오지 않은 상태였습니다.
+GitHub 웹에서 수정한 커밋을 로컬에 반영하지 않아 원격과 로컬의 이력이 갈라졌을 것으로 예상했습니다.
+
+## 확인
 
 원격의 새로운 커밋 3개를 확인했습니다.
 
@@ -36,7 +38,7 @@ hint: have locally.
 
 **원인:** 원격 `main`과 로컬 `main`의 이력이 갈라져서 일반적인 `git push`로는 fast-forward 갱신을 할 수 없었습니다.
 
-## 해결 과정과 검증
+## 해결/대안
 
 ### 1. 원격 커밋을 먼저 반영하도록 리베이스
 
