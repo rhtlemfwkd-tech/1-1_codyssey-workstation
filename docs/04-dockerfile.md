@@ -157,6 +157,10 @@ $ sudo docker exec codyssey-web-v3 wget -qO- http://127.0.0.1/
 
 **③ 컨테이너 종료 및 삭제**
 
+※주의※ 5번 포트 매핑 실습에서 같은 `codyssey-web:v3` 이미지를 다시 사용하므로,
+
+이미지 삭제방법은 알아만 두시고 삭제는 하지 말아주시길 바랍니다.
+
 ```bash
 $ sudo docker stop codyssey-web-v3
 codyssey-web-v3
@@ -170,8 +174,6 @@ codyssey-web-v3
 
 - `docker stop`: 컨테이너 중지
 - `docker rm`: 컨테이너 삭제
-
-5번 포트 매핑 실습에서는 같은 `codyssey-web:v3` 이미지를 다시 사용하므로, 이미지는 삭제하지 않습니다.
 
 ---
 
